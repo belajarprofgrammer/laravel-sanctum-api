@@ -11,6 +11,9 @@
   "public": true,
   "buildCommand": "vite build",
   "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api" }
+  ],
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
