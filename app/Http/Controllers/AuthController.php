@@ -41,14 +41,9 @@ class AuthController extends Controller
         if (Auth::attempt($request->validated())) {
             $user = $request->user();
 
-            $accessToken = $user->createToken(
-                'access-token', ['*'], now()->addWeek(),
-            )->plainTextToken;
+            $accessToken = $user->createToken('access-token')->plainTextToken;
 
-            $token = new Fluent([
-                'access_token' => $accessToken,
-                'expired_at' => now()->addWeek()->timestamp,
-            ]);
+            $token = new Fluent(['access_token' => $accessToken]);
 
             return response()->json([
                 'code' => Response::HTTP_OK,
